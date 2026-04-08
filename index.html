@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Sales Tracker - For Pakistani Shopkeepers</title>
+    <style>
+        :root {
+            --primary-green: #25D366; /* WhatsApp green */
+            --secondary-green: #075E54; /* Darker WhatsApp green */
+            --background-light: #F0F2F5;
+            --text-dark: #121212;
+            --text-light: #333;
+            --white: #FFFFFF;
+            --shadow: rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-light);
+            background-color: var(--background-light);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--white);
+            padding: 20px 0;
+            box-shadow: 0 2px 5px var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: var(--secondary-green);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--primary-green);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-green);
+        }
+
+        /* Hero Section */
+        .hero {
+            background-color: var(--white);
+            padding: 80px 0;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 60vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.9), rgba(240, 242, 245, 0.9));
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+            color: var(--secondary-green);
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.5em;
+            color: var(--text-light);
+            margin-bottom: 40px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary-green);
+            color: var(--white);
+            padding: 15px 35px;
+            font-size: 1.2em;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 15px var(--shadow);
+        }
+
+        .cta-button:hover {
+            background-color: var(--secondary-green);
+            transform: translateY(-3px);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background-color: var(--background-light);
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2.8em;
+            color: var(--secondary-green);
+            margin-bottom: 60px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px var(--shadow);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px var(--shadow);
+        }
+
+        .feature-card .icon {
+            font-size: 3em;
+            color: var(--primary-green);
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5em;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+        }
+
+        .feature-card p {
+            font-size: 1em;
+            color: var(--text-light);
+        }
+
+        /* How It Works Section */
+        .how-it-works {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+
+        .how-it-works h2 {
+            text-align: center;
+            font-size: 2.8em;
+            color: var(--secondary-green);
+            margin-bottom: 60px;
+        }
+
+        .how-it-works-steps {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start;
+            text-align: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .step {
+            flex: 1;
+            min-width: 250px;
+            max-width: 300px;
+        }
+
+        .step .number {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-green);
+            color: var(--white);
+            border-radius: 50%;
+            font-size: 1.5em;
+            font-weight: bold;
+            line-height: 50px;
+            margin-bottom: 20px;
+        }
+
+        .step h3 {
+            font-size: 1.4em;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+        }
+
+        .step p {
+            font-size: 1em;
+            color: var(--text-light);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary-green);
+            color: var(--white);
+            padding: 40px 0;
+            text-align: center;
+            font-size: 0.9em;
+        }
+
+        footer .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        footer .logo {
+            color: var(--white);
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+
+        footer .logo span {
+            color: var(--primary-green);
+        }
+
+        footer p {
+            margin-bottom: 10px;
+        }
+
+        footer a {
+            color: var(--primary-green);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 1.5em;
+            }
+
+            nav ul {
+                display: none; /* Hide nav on mobile by default, could implement hamburger menu later */
+            }
+
+            .hero h1 {
+                font-size: 2.8em;
+            }
+
+            .hero p {
+                font-size: 1.2em;
+            }
+
+            .features h2, .how-it-works h2 {
+                font-size: 2.2em;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .how-it-works-steps {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .step {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.2em;
+            }
+
+            .hero p {
+                font-size: 1.1em;
+            }
+
+            .cta-button {
+                padding: 12px 25px;
+                font-size: 1em;
+            }
+
+            .features h2, .how-it-works h2 {
+                font-size: 1.8em;
+            }
+
+            .feature-card, .step {
+                padding: 20px;
+            }
+
+            .feature-card .icon {
+                font-size: 2.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <a href="#" class="logo">BizTrack <span>Pro</span></a>
+            <nav>
+                <ul>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>Effortlessly Track Sales & Inventory on WhatsApp</h1>
+            <p>Designed for Pakistani shopkeepers like Ahmed Khan, Fatima Bibi, and Bilal Hassan. Manage your business, understand profitability, and grow with ease.</p>
+            <a href="https://wa.me/YOUR_WHATSAPP_NUMBER" class="cta-button">Start Tracking Free on WhatsApp</a>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="container">
+            <h2>Core Features for Your Business</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="icon">💬</div>
+                    <h3>WhatsApp Sales Logging</h3>
+                    <p>Log sales instantly by sending a simple WhatsApp message with item, quantity, and price.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">📦</div>
+                    <h3>Basic Inventory Tracking</h3>
+                    <p>Automatically updates stock levels as you log sales. Set initial stock and get alerts when low.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">💰</div>
+                    <h3>Daily Profit/Loss</h3>
+                    <p>Get a clear picture of your daily earnings by calculating revenue against cost of goods.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">📊</div>
+                    <h3>Evening Summary Report</h3>
+                    <p>Receive a daily WhatsApp summary of sales, profit, and low stock items.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🚀</div>
+                    <h3>Easy WhatsApp Onboarding</h3>
+                    <p>A guided, step-by-step setup directly through WhatsApp. Get started in minutes!</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">💡</div>
+                    <h3>Smart Item Recognition</h3>
+                    <p>Understands local product names and variations, ensuring accurate tracking.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <h2>How It Works in 3 Simple Steps</h2>
+            <div class="how-it-works-steps">
+                <div class="step">
+                    <div class="number">1</div>
+                    <h3>Log Sales</h3>
+                    <p>Send a message like: "Chai Patti 2 150" to log a sale on WhatsApp.</p>
+                </div>
+                <div class="step">
+                    <div class="number">2</div>
+                    <h3>Track Automatically</h3>
+                    <p>Your inventory is updated, and sales are recorded in real-time.</p>
+                </div>
+                <div class="step">
+                    <div class="number">3</div>
+                    <h3>See Your Profits</h3>
+                    <p>Receive daily summaries of sales, profit, and inventory status.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <a href="#" class="logo">BizTrack <span>Pro</span></a>
+            <p>&copy; 2023 BizTrack Pro. All rights reserved.</p>
+            <p>Empowering Pakistani shopkeepers with simple, smart tools.</p>
+            <p>Questions? Reach us on <a href="https://wa.me/YOUR_WHATSAPP_NUMBER">WhatsApp</a>.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
