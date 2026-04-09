@@ -3,30 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WhatsApp Sales Tracker - For Pakistani Shopkeepers</title>
+    <title>HisaabPro - Your WhatsApp-powered business ledger</title>
     <style>
+        /* Global Styles */
         :root {
             --primary-green: #25D366; /* WhatsApp green */
             --secondary-green: #075E54; /* Darker WhatsApp green */
-            --background-light: #F0F2F5;
-            --text-dark: #121212;
-            --text-light: #333;
+            --accent-green: #128C7E;
+            --light-gray: #ECE5DD;
             --white: #FFFFFF;
-            --shadow: rgba(0, 0, 0, 0.1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+            --text-dark: #121212;
+            --text-light: #333333;
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
+            margin: 0;
+            padding: 0;
             color: var(--text-light);
-            background-color: var(--background-light);
-            overflow-x: hidden;
+            line-height: 1.6;
+            background-color: var(--white);
+        }
+
+        h1, h2, h3 {
+            color: var(--secondary-green);
+        }
+
+        a {
+            color: var(--primary-green);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--accent-green);
         }
 
         .container {
@@ -37,12 +47,13 @@
 
         /* Header */
         header {
-            background-color: var(--white);
+            background-color: var(--primary-green);
+            color: var(--white);
             padding: 20px 0;
-            box-shadow: 0 2px 5px var(--shadow);
             position: sticky;
             top: 0;
             z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         header .container {
@@ -54,74 +65,53 @@
         .logo {
             font-size: 1.8em;
             font-weight: bold;
-            color: var(--secondary-green);
-            text-decoration: none;
-        }
-
-        .logo span {
-            color: var(--primary-green);
+            color: var(--white);
         }
 
         nav ul {
             list-style: none;
+            margin: 0;
+            padding: 0;
             display: flex;
         }
 
         nav ul li {
-            margin-left: 30px;
+            margin-left: 25px;
         }
 
         nav ul li a {
-            text-decoration: none;
-            color: var(--text-dark);
+            color: var(--white);
             font-weight: 500;
             transition: color 0.3s ease;
         }
 
         nav ul li a:hover {
-            color: var(--primary-green);
+            color: var(--light-gray);
         }
 
         /* Hero Section */
         .hero {
-            background-color: var(--white);
-            padding: 80px 0;
+            background-color: var(--light-gray);
             text-align: center;
+            padding: 80px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             min-height: 60vh;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.9), rgba(240, 242, 245, 0.9));
-            z-index: 1;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 800px;
         }
 
         .hero h1 {
             font-size: 3.5em;
-            color: var(--secondary-green);
             margin-bottom: 20px;
+            line-height: 1.2;
+            color: var(--secondary-green);
         }
 
         .hero p {
-            font-size: 1.5em;
-            color: var(--text-light);
+            font-size: 1.4em;
+            color: var(--text-dark);
+            max-width: 700px;
             margin-bottom: 40px;
         }
 
@@ -129,45 +119,44 @@
             display: inline-block;
             background-color: var(--primary-green);
             color: var(--white);
-            padding: 15px 35px;
+            padding: 15px 30px;
             font-size: 1.2em;
             font-weight: bold;
-            text-decoration: none;
-            border-radius: 30px;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-            box-shadow: 0 4px 15px var(--shadow);
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            border: none;
+            cursor: pointer;
         }
 
         .cta-button:hover {
-            background-color: var(--secondary-green);
-            transform: translateY(-3px);
+            background-color: var(--accent-green);
+            transform: translateY(-2px);
         }
 
         /* Features Section */
         .features {
             padding: 80px 0;
-            background-color: var(--background-light);
+            background-color: var(--white);
         }
 
         .features h2 {
             text-align: center;
             font-size: 2.8em;
-            color: var(--secondary-green);
             margin-bottom: 60px;
         }
 
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            gap: 40px;
         }
 
         .feature-card {
             background-color: var(--white);
-            padding: 30px;
             border-radius: 10px;
-            box-shadow: 0 4px 15px var(--shadow);
+            padding: 30px;
             text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             display: flex;
             flex-direction: column;
@@ -176,82 +165,73 @@
 
         .feature-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 25px var(--shadow);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         }
 
-        .feature-card .icon {
+        .feature-card i {
             font-size: 3em;
             color: var(--primary-green);
             margin-bottom: 20px;
         }
 
         .feature-card h3 {
-            font-size: 1.5em;
-            color: var(--text-dark);
+            font-size: 1.6em;
             margin-bottom: 15px;
+            color: var(--secondary-green);
         }
 
         .feature-card p {
-            font-size: 1em;
-            color: var(--text-light);
+            font-size: 1.1em;
+            color: var(--text-dark);
         }
 
         /* How It Works Section */
         .how-it-works {
             padding: 80px 0;
-            background-color: var(--white);
+            background-color: var(--light-gray);
         }
 
         .how-it-works h2 {
             text-align: center;
             font-size: 2.8em;
-            color: var(--secondary-green);
             margin-bottom: 60px;
         }
 
-        .how-it-works-steps {
+        .steps-container {
             display: flex;
             justify-content: space-around;
             align-items: flex-start;
-            text-align: center;
             flex-wrap: wrap;
             gap: 30px;
+            text-align: center;
         }
 
         .step {
-            flex: 1;
+            flex-basis: 30%;
             min-width: 250px;
-            max-width: 300px;
         }
 
-        .step .number {
-            display: inline-block;
-            width: 50px;
-            height: 50px;
-            background-color: var(--primary-green);
-            color: var(--white);
-            border-radius: 50%;
-            font-size: 1.5em;
-            font-weight: bold;
-            line-height: 50px;
+        .step .icon {
+            font-size: 2.5em;
+            color: var(--accent-green);
             margin-bottom: 20px;
         }
 
         .step h3 {
-            font-size: 1.4em;
-            color: var(--text-dark);
+            font-size: 1.5em;
             margin-bottom: 15px;
+            color: var(--secondary-green);
         }
 
         .step p {
-            font-size: 1em;
-            color: var(--text-light);
+            font-size: 1.1em;
+            color: var(--text-dark);
         }
 
         /* Footer */
         footer {
             background-color: var(--secondary-green);
-            color: var(--white);
+            color: var(--light-gray);
             padding: 40px 0;
             text-align: center;
             font-size: 0.9em;
@@ -259,42 +239,40 @@
 
         footer .container {
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
+            flex-wrap: wrap;
         }
 
-        footer .logo {
+        .footer-logo {
+            font-size: 1.5em;
+            font-weight: bold;
             color: var(--white);
-            margin-bottom: 20px;
-            font-size: 2em;
+            margin-bottom: 15px;
         }
 
-        footer .logo span {
-            color: var(--primary-green);
+        .footer-links a {
+            color: var(--light-gray);
+            margin: 0 10px;
         }
 
-        footer p {
-            margin-bottom: 10px;
+        .footer-links a:hover {
+            color: var(--white);
         }
 
-        footer a {
-            color: var(--primary-green);
-            text-decoration: none;
+        .copyright {
+            margin-top: 15px;
+            flex-basis: 100%;
         }
 
-        footer a:hover {
-            text-decoration: underline;
-        }
-
-        /* Responsive Design */
+        /* Mobile Responsiveness */
         @media (max-width: 768px) {
             .logo {
                 font-size: 1.5em;
             }
 
             nav ul {
-                display: none; /* Hide nav on mobile by default, could implement hamburger menu later */
+                display: none; /* Hide nav for mobile, could be replaced with a hamburger menu */
             }
 
             .hero h1 {
@@ -305,27 +283,32 @@
                 font-size: 1.2em;
             }
 
-            .features h2, .how-it-works h2 {
-                font-size: 2.2em;
-            }
-
             .features-grid {
                 grid-template-columns: 1fr;
             }
 
-            .how-it-works-steps {
+            .steps-container {
                 flex-direction: column;
                 align-items: center;
             }
 
             .step {
-                max-width: 100%;
+                flex-basis: 80%;
+            }
+
+            footer .container {
+                flex-direction: column;
+            }
+
+            .footer-links {
+                margin-top: 15px;
+                margin-bottom: 15px;
             }
         }
 
         @media (max-width: 480px) {
             .hero h1 {
-                font-size: 2.2em;
+                font-size: 2.3em;
             }
 
             .hero p {
@@ -333,80 +316,85 @@
             }
 
             .cta-button {
-                padding: 12px 25px;
                 font-size: 1em;
+                padding: 12px 25px;
             }
 
-            .features h2, .how-it-works h2 {
-                font-size: 1.8em;
-            }
-
-            .feature-card, .step {
+            .feature-card {
                 padding: 20px;
-            }
-
-            .feature-card .icon {
-                font-size: 2.5em;
             }
         }
     </style>
+    <!-- Font Awesome for icons (embedded via CDN, but in a real single-file scenario, one might inline SVG or use custom fonts) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
     <header>
         <div class="container">
-            <a href="#" class="logo">BizTrack <span>Pro</span></a>
+            <div class="logo">HisaabPro</div>
             <nav>
                 <ul>
                     <li><a href="#features">Features</a></li>
                     <li><a href="#how-it-works">How It Works</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#">Contact</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <section class="hero">
-        <div class="container hero-content">
-            <h1>Effortlessly Track Sales & Inventory on WhatsApp</h1>
-            <p>Designed for Pakistani shopkeepers like Ahmed Khan, Fatima Bibi, and Bilal Hassan. Manage your business, understand profitability, and grow with ease.</p>
-            <a href="https://wa.me/YOUR_WHATSAPP_NUMBER" class="cta-button">Start Tracking Free on WhatsApp</a>
+        <div class="container">
+            <h1>Your WhatsApp-powered business ledger</h1>
+            <p>Effortlessly track daily sales, inventory, and profits for your kiryana or street vendor business directly through WhatsApp. Get instant insights, no app needed.</p>
+            <a href="#" class="cta-button">Start Free on WhatsApp</a>
         </div>
     </section>
 
     <section id="features" class="features">
         <div class="container">
-            <h2>Core Features for Your Business</h2>
+            <h2>Core Features</h2>
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="icon">💬</div>
+                    <i class="fab fa-whatsapp"></i>
                     <h3>WhatsApp Sales Logging</h3>
-                    <p>Log sales instantly by sending a simple WhatsApp message with item, quantity, and price.</p>
+                    <p>Simply send an item name, quantity, and price via WhatsApp to log a sale. HisaabPro does the rest.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="icon">📦</div>
-                    <h3>Basic Inventory Tracking</h3>
-                    <p>Automatically updates stock levels as you log sales. Set initial stock and get alerts when low.</p>
+                    <i class="fas fa-boxes"></i>
+                    <h3>Automated Inventory Tracking</h3>
+                    <p>Stock levels automatically decrease with each sale. Manage new stock and low alerts effortlessly.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="icon">💰</div>
-                    <h3>Daily Profit/Loss</h3>
-                    <p>Get a clear picture of your daily earnings by calculating revenue against cost of goods.</p>
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Daily Profit/Loss Calculation</h3>
+                    <p>Understand your daily earnings by automatically subtracting item costs from sales revenue.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="icon">📊</div>
-                    <h3>Evening Summary Report</h3>
-                    <p>Receive a daily WhatsApp summary of sales, profit, and low stock items.</p>
+                    <i class="fas fa-file-alt"></i>
+                    <h3>Daily Summary Report</h3>
+                    <p>Receive a concise end-of-day WhatsApp report detailing sales, profits, and low stock warnings.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="icon">🚀</div>
-                    <h3>Easy WhatsApp Onboarding</h3>
-                    <p>A guided, step-by-step setup directly through WhatsApp. Get started in minutes!</p>
+                    <i class="fas fa-users"></i>
+                    <h3>Multi-User Access</h3>
+                    <p>Allow multiple employees to log sales under your store's account, keeping everything centralized.</p>
                 </div>
-                <div class="feature-card">
-                    <div class="icon">💡</div>
-                    <h3>Smart Item Recognition</h3>
-                    <p>Understands local product names and variations, ensuring accurate tracking.</p>
+                <!-- Add more core features here if needed, e.g., Setup, Stock Update, Item Management, Payment Tracking, History -->
+                 <div class="feature-card">
+                    <i class="fas fa-cogs"></i>
+                    <h3>Guided Setup & Management</h3>
+                    <p>Easy WhatsApp-based onboarding to set up items, cost prices, and manage your inventory.</p>
+                </div>
+                 <div class="feature-card">
+                    <i class="fas fa-exchange-alt"></i>
+                    <h3>Payment & History Tracking</h3>
+                    <p>Tag sales as cash or credit, view credit sales, and request historical data summaries.</p>
+                </div>
+                 <div class="feature-card">
+                    <i class="fas fa-language"></i>
+                    <h3>Urdu/English Support</h3>
+                    <p>Interact with HisaabPro in the language you prefer, for seamless communication.</p>
                 </div>
             </div>
         </div>
@@ -414,33 +402,37 @@
 
     <section id="how-it-works" class="how-it-works">
         <div class="container">
-            <h2>How It Works in 3 Simple Steps</h2>
-            <div class="how-it-works-steps">
+            <h2>How It Works</h2>
+            <div class="steps-container">
                 <div class="step">
-                    <div class="number">1</div>
-                    <h3>Log Sales</h3>
-                    <p>Send a message like: "Chai Patti 2 150" to log a sale on WhatsApp.</p>
+                    <div class="icon"><i class="fas fa-mobile-alt"></i></div>
+                    <h3>1. Setup Items</h3>
+                    <p>Guide your initial inventory setup via a simple WhatsApp conversation, including item names and their cost prices.</p>
                 </div>
                 <div class="step">
-                    <div class="number">2</div>
-                    <h3>Track Automatically</h3>
-                    <p>Your inventory is updated, and sales are recorded in real-time.</p>
+                    <div class="icon"><i class="fas fa-comment-dots"></i></div>
+                    <h3>2. Log Sales</h3>
+                    <p>As you make sales, send a quick WhatsApp message with item, quantity, and price. HisaabPro automatically updates inventory and records the sale.</p>
                 </div>
                 <div class="step">
-                    <div class="number">3</div>
-                    <h3>See Your Profits</h3>
-                    <p>Receive daily summaries of sales, profit, and inventory status.</p>
+                    <div class="icon"><i class="fas fa-clipboard-list"></i></div>
+                    <h3>3. Get Insights</h3>
+                    <p>Receive daily summary reports on sales, profits, and low stock alerts. Access past data and manage items anytime via WhatsApp.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer id="contact">
+    <footer>
         <div class="container">
-            <a href="#" class="logo">BizTrack <span>Pro</span></a>
-            <p>&copy; 2023 BizTrack Pro. All rights reserved.</p>
-            <p>Empowering Pakistani shopkeepers with simple, smart tools.</p>
-            <p>Questions? Reach us on <a href="https://wa.me/YOUR_WHATSAPP_NUMBER">WhatsApp</a>.</p>
+            <div class="footer-logo">HisaabPro</div>
+            <div class="footer-links">
+                <a href="#features">Features</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+            <div class="copyright">&copy; 2023 HisaabPro. All rights reserved.</div>
         </div>
     </footer>
 
