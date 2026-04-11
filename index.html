@@ -3,35 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HisaabPro - Your WhatsApp-powered business ledger</title>
+    <title>HisaabPro: WhatsApp Sales Tracker for Pakistani Kiryana Shops</title>
     <style>
-        /* General Styles & Resets */
-        :root {
-            --primary-green: #25D366; /* WhatsApp Green */
-            --darker-green: #1DA851;
-            --light-green-bg: #E6F8ED;
-            --text-dark: #333333;
-            --text-light: #666666;
-            --white: #FFFFFF;
-            --light-gray-bg: #F8F8F8;
-            --border-color: #E0E0E0;
-            --shadow-light: rgba(0, 0, 0, 0.08);
-            --shadow-medium: rgba(0, 0, 0, 0.12);
-        }
-
+        /* Basic Reset & Typography */
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            color: var(--text-dark);
-            background-color: var(--white);
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+            color: #333;
+            background-color: #f9f9f9;
         }
 
         .container {
@@ -40,413 +25,336 @@
             padding: 0 20px;
         }
 
-        section {
-            padding: 80px 0;
-            text-align: center;
+        /* Header */
+        header {
+            background: #ffffff;
+            color: #333;
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
 
-        h1, h2, h3 {
-            margin-bottom: 20px;
-            line-height: 1.2;
-            color: var(--text-dark);
-        }
-
-        h1 {
-            font-size: 3.2em;
-            font-weight: 700;
-        }
-
-        h2 {
-            font-size: 2.5em;
-            font-weight: 600;
-            margin-bottom: 40px;
-        }
-
-        h3 {
-            font-size: 1.8em;
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-
-        p {
-            font-size: 1.1em;
-            color: var(--text-light);
-            margin-bottom: 15px;
-        }
-
-        a {
-            text-decoration: none;
-            color: var(--primary-green);
-        }
-
-        /* Navbar */
-        .navbar {
-            background-color: var(--white);
-            padding: 20px 0;
-            box-shadow: 0 2px 10px var(--shadow-light);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .navbar .container {
+        header .container {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .navbar .logo {
-            font-size: 1.8em;
-            font-weight: 700;
-            color: var(--darker-green);
-        }
-
-        .navbar nav a {
-            margin-left: 30px;
-            font-size: 1.05em;
-            font-weight: 500;
-            color: var(--text-dark);
-            transition: color 0.3s ease;
-        }
-
-        .navbar nav a:hover {
-            color: var(--primary-green);
+        header .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #25D366; /* WhatsApp green */
         }
 
         /* Hero Section */
-        .hero-section {
-            background-color: var(--light-green-bg);
-            padding: 100px 0;
+        .hero {
+            background: linear-gradient(135deg, #e0f7fa 0%, #ffffff 100%);
+            padding: 80px 0;
+            text-align: center;
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 70vh;
+            min-height: 60vh; /* Make it take up a good portion of the viewport */
         }
 
-        .hero-section .container {
-            max-width: 900px;
+        .hero-content {
+            max-width: 800px;
         }
 
-        .hero-section h1 {
-            font-size: 4em;
-            margin-bottom: 25px;
-            color: var(--darker-green);
+        .hero h1 {
+            font-size: 3rem;
+            color: #075E54; /* Darker WhatsApp green */
+            margin-bottom: 20px;
+            line-height: 1.2;
+            font-weight: 700;
         }
 
-        .hero-section p {
-            font-size: 1.3em;
-            margin-bottom: 40px;
-            max-width: 700px;
+        .hero p {
+            font-size: 1.3rem;
+            color: #555;
+            margin-bottom: 30px;
+            max-width: 600px;
             margin-left: auto;
             margin-right: auto;
-            color: var(--text-dark);
         }
 
         .cta-button {
             display: inline-block;
-            background-color: var(--primary-green);
-            color: var(--white);
-            padding: 18px 40px;
+            background-color: #25D366; /* WhatsApp green */
+            color: white;
+            padding: 15px 30px;
             border-radius: 50px;
-            font-size: 1.2em;
-            font-weight: 600;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;
             transition: background-color 0.3s ease, transform 0.2s ease;
-            box-shadow: 0 4px 15px var(--shadow-medium);
+            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.4);
         }
 
         .cta-button:hover {
-            background-color: var(--darker-green);
+            background-color: #1DA851; /* Darker green on hover */
             transform: translateY(-2px);
         }
 
+        /* Sections */
+        section {
+            padding: 60px 0;
+            background-color: #ffffff;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            border-radius: 8px;
+        }
+
+        section.bg-light {
+            background-color: #f0fdf4; /* Light green tint */
+        }
+
+        section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #075E54;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        section h2::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -10px;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: #25D366;
+            border-radius: 2px;
+        }
+
+
         /* Features Section */
-        .features-section {
-            background-color: var(--white);
-        }
-
-        .feature-grid {
+        .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
-            margin-top: 50px;
+            padding: 0 40px; /* Add horizontal padding to the grid */
         }
 
-        .feature-card {
-            background-color: var(--white);
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 5px 20px var(--shadow-light);
-            text-align: left;
+        .feature-item {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            text-align: center;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
+            border: 1px solid #e0e0e0;
         }
 
-        .feature-card:hover {
+        .feature-item:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 25px var(--shadow-medium);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
         }
 
-        .feature-card .icon-placeholder {
-            width: 60px;
-            height: 60px;
-            background-color: var(--light-green-bg);
-            border-radius: 50%;
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2em;
-            color: var(--darker-green);
-            font-weight: bold;
-        }
-        
-        .feature-card h3 {
-            font-size: 1.5em;
-            margin-bottom: 10px;
-            color: var(--darker-green);
+        .feature-item h3 {
+            font-size: 1.4rem;
+            color: #075E54;
+            margin-bottom: 15px;
         }
 
-        .feature-card p {
-            font-size: 1em;
-            color: var(--text-light);
+        .feature-item p {
+            font-size: 1rem;
+            color: #666;
         }
 
         /* How It Works Section */
-        .how-it-works-section {
-            background-color: var(--light-gray-bg);
-            padding-bottom: 100px;
-        }
-
-        .steps-container {
+        .how-it-works-steps {
             display: flex;
+            flex-wrap: wrap;
             justify-content: center;
             gap: 30px;
-            flex-wrap: wrap; /* Allows wrapping on smaller screens */
-            margin-top: 50px;
         }
 
-        .step-card {
-            background-color: var(--white);
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px var(--shadow-light);
-            text-align: left;
-            flex: 1; /* Distribute space evenly */
-            min-width: 280px; /* Minimum width for each card */
-            max-width: 350px; /* Maximum width to prevent overstretching */
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        .step {
+            flex: 1;
+            min-width: 280px;
+            max-width: 350px;
+            padding: 30px;
+            border: 1px solid #e0f7fa;
+            border-radius: 10px;
+            background-color: #f9ffff;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
 
-        .step-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px var(--shadow-medium);
+        .step .step-number {
+            display: inline-block;
+            background-color: #25D366;
+            color: white;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            border-radius: 50%;
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 20px;
         }
 
-        .step-card h3 {
-            font-size: 1.6em;
-            color: var(--primary-green);
+        .step h3 {
+            font-size: 1.5rem;
+            color: #075E54;
+            margin-bottom: 10px;
         }
 
-        .step-card p {
-            font-size: 1em;
+        .step p {
+            color: #666;
         }
 
         /* Footer */
-        .footer {
-            background-color: var(--text-dark);
-            color: var(--white);
-            padding: 40px 0;
-            font-size: 0.9em;
+        footer {
+            background: #075E54;
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 40px;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
         }
 
-        .footer p {
-            color: var(--white);
-            margin-bottom: 0;
+        footer p {
+            margin: 0;
+            font-size: 0.9rem;
         }
 
         /* Responsive Design */
-        @media (max-width: 992px) {
-            .hero-section h1 {
-                font-size: 3.5em;
-            }
-            .hero-section p {
-                font-size: 1.2em;
-            }
-            h1 {
-                font-size: 2.8em;
-            }
-            h2 {
-                font-size: 2.2em;
-            }
-            .navbar nav a {
-                margin-left: 20px;
-            }
-            .feature-grid {
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            }
-        }
-
         @media (max-width: 768px) {
-            section {
-                padding: 60px 0;
+            .hero h1 {
+                font-size: 2.5rem;
             }
-            .navbar .container {
-                flex-direction: column;
+
+            .hero p {
+                font-size: 1.1rem;
             }
-            .navbar .logo {
-                margin-bottom: 15px;
+
+            section h2 {
+                font-size: 2rem;
             }
-            .navbar nav {
-                margin-top: 10px;
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                padding: 0 20px;
             }
-            .navbar nav a {
-                margin: 0 15px;
-            }
-            .hero-section {
-                padding: 80px 0;
-                min-height: 60vh;
-            }
-            .hero-section h1 {
-                font-size: 2.8em;
-            }
-            .hero-section p {
-                font-size: 1.1em;
-            }
-            h1 {
-                font-size: 2.4em;
-            }
-            h2 {
-                font-size: 2em;
-            }
-            .cta-button {
-                padding: 15px 30px;
-                font-size: 1.1em;
-            }
-            .feature-card {
-                padding: 30px;
-            }
-            .steps-container {
+
+            .how-it-works-steps {
                 flex-direction: column;
                 align-items: center;
             }
-            .step-card {
-                max-width: 90%; /* Take more width on smaller screens */
+
+            .step {
+                max-width: 90%;
             }
         }
 
         @media (max-width: 480px) {
-            .container {
-                padding: 0 15px;
+            .hero h1 {
+                font-size: 2rem;
             }
-            .hero-section h1 {
-                font-size: 2.2em;
+
+            .hero p {
+                font-size: 1rem;
             }
-            .hero-section p {
-                font-size: 1em;
+
+            .cta-button {
+                padding: 12px 25px;
+                font-size: 1rem;
             }
-            h1 {
-                font-size: 2em;
+
+            section {
+                padding: 40px 0;
             }
-            h2 {
-                font-size: 1.8em;
-            }
-            .navbar nav {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 10px;
-            }
-            .navbar nav a {
-                margin: 0 5px;
-                font-size: 0.95em;
-            }
-            .feature-grid {
-                grid-template-columns: 1fr; /* Single column layout */
+
+            section h2 {
+                font-size: 1.8rem;
+                margin-bottom: 30px;
             }
         }
     </style>
 </head>
 <body>
-    <header class="navbar">
+
+    <header>
         <div class="container">
             <div class="logo">HisaabPro</div>
-            <nav>
-                <a href="#features">Features</a>
-                <a href="#how-it-works">How It Works</a>
-            </nav>
         </div>
     </header>
 
     <main>
-        <section id="hero" class="hero-section">
-            <div class="container">
-                <h1>HisaabPro: Your WhatsApp-powered business ledger.</h1>
-                <p>Pakistani kiryana store owners and street vendors, effortlessly track daily sales, automate inventory, calculate profit/loss, and receive actionable daily summaries—all without needing an app or technical knowledge.</p>
-                <a href="https://wa.me/YOUR_WHATSAPP_NUMBER?text=Hi%20HisaabPro" target="_blank" class="cta-button">Start Free on WhatsApp</a>
-                <p style="font-size: 0.9em; margin-top: 20px; color: var(--text-dark);">*Replace YOUR_WHATSAPP_NUMBER in the link with your actual number (e.g., 923001234567)</p>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>HisaabPro: Effortless Sales Tracking & Profit Boosting for Pakistani Kiryana Shops via WhatsApp</h1>
+                <p>Track daily sales, manage inventory, calculate profit/loss, and receive actionable business summaries – all through WhatsApp, no app or technical skills required!</p>
+                <a href="#how-it-works" class="cta-button">Start Tracking Sales Now!</a>
             </div>
         </section>
 
-        <section id="features" class="features-section">
+        <section class="bg-light">
             <div class="container">
-                <h2>Features that empower your business.</h2>
-                <div class="feature-grid">
-                    <div class="feature-card">
-                        <div class="icon-placeholder">📝</div> <!-- Simple unicode icon -->
-                        <h3>Initial Setup & Product Catalog</h3>
-                        <p>Begin with a simple 'Hi' on WhatsApp to register your shop. Easily add or update products with details like cost, selling price, and initial stock using straightforward messages.</p>
+                <h2>How HisaabPro Empowers Your Business</h2>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <h3>WhatsApp-Powered Sales Tracking</h3>
+                        <p>Simply send your daily sales data via WhatsApp messages. HisaabPro intelligently processes your input, making sales tracking as easy as sending a text.</p>
                     </div>
-                    <div class="feature-card">
-                        <div class="icon-placeholder">🛒</div>
-                        <h3>Daily Sales Logging & Transactions</h3>
-                        <p>Log sales effortlessly by sending messages like 'SALE: Lays, 2'. HisaabPro processes these, updates inventory, and records sale values and profits instantly.</p>
+                    <div class="feature-item">
+                        <h3>Automated Inventory Management</h3>
+                        <p>Keep real-time tabs on your stock levels without manual counting. HisaabPro helps you know what you have, what you've sold, and what needs restocking.</p>
                     </div>
-                    <div class="feature-card">
-                        <div class="icon-placeholder">📦</div>
-                        <h3>Automated Inventory & Stock Alerts</h3>
-                        <p>Your inventory is tracked automatically. Get immediate WhatsApp alerts for insufficient stock and see low-stock items highlighted in your daily report for easy restocking.</p>
+                    <div class="feature-item">
+                        <h3>Instant Profit & Loss Calculation</h3>
+                        <p>Know exactly how much you're earning, day by day. HisaabPro calculates your profit and loss automatically, giving you clear financial insights.</p>
                     </div>
-                    <div class="feature-card">
-                        <div class="icon-placeholder">📊</div>
-                        <h3>Real-time Profit & Loss Calculation</h3>
-                        <p>HisaabPro calculates profit for every sale based on your product data. Get accurate, aggregated daily totals for your sales revenue and net profit, helping you understand your earnings.</p>
+                    <div class="feature-item">
+                        <h3>Actionable Daily Summaries</h3>
+                        <p>Receive easy-to-understand reports directly on WhatsApp. Get a quick overview of your daily performance to help you make smarter business decisions.</p>
                     </div>
-                    <div class="feature-card">
-                        <div class="icon-placeholder">📈</div>
-                        <h3>Actionable Daily Summary Report</h3>
-                        <p>Receive a concise daily WhatsApp report every evening. It includes total sales, profit, best-selling items, and low-stock alerts, all in simple, local language for quick decisions.</p>
+                    <div class="feature-item">
+                        <h3>No App Required</h3>
+                        <p>HisaabPro works entirely through WhatsApp. Free up your phone storage and avoid complex installations – just chat to manage your business.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>No Technical Knowledge Needed</h3>
+                        <p>Designed for ultimate simplicity. If you can use WhatsApp to chat with friends and family, you already have all the skills needed to master HisaabPro.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="how-it-works" class="how-it-works-section">
+        <section>
             <div class="container">
-                <h2>How HisaabPro works for you.</h2>
-                <div class="steps-container">
-                    <div class="step-card">
-                        <h3>1. Say 'Hi' on WhatsApp</h3>
-                        <p>Initiate your journey by sending a simple 'Hi' to our dedicated WhatsApp number. We'll guide you through quick shop registration and your first product setups.</p>
+                <h2 id="how-it-works">How It Works: Simple Steps to Better Business</h2>
+                <div class="how-it-works-steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3>Send Sales Data</h3>
+                        <p>Simply message your daily sales (e.g., "Sold: Rice 2kg, Sugar 1kg") to your dedicated HisaabPro WhatsApp number.</p>
                     </div>
-                    <div class="step-card">
-                        <h3>2. Log Sales, Update Products</h3>
-                        <p>Effortlessly manage your business by sending messages like `SALE: Lays Packet, 2` or `ADD PRODUCT: Milk, 100, 120, 30` to update inventory and record daily transactions.</p>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3>HisaabPro Processes</h3>
+                        <p>Our intelligent system instantly records your sales, updates inventory, and calculates your daily profits and losses in the background.</p>
                     </div>
-                    <div class="step-card">
-                        <h3>3. Get Daily Business Insights</h3>
-                        <p>Every evening, receive an automated WhatsApp report detailing your total sales, profit, best-sellers, and low-stock alerts. Make informed decisions for the next day with ease.</p>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3>Receive Daily Summaries</h3>
+                        <p>Get a concise, actionable summary of your business performance directly on WhatsApp every day. Make informed decisions effortlessly!</p>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="footer">
+    <footer>
         <div class="container">
-            <p>&copy; 2023 HisaabPro. All rights reserved. Empowering local businesses with WhatsApp.</p>
+            <p>&copy; 2023 HisaabPro. All rights reserved. Made with &hearts; for Pakistani Shopkeepers.</p>
         </div>
     </footer>
+
 </body>
 </html>
