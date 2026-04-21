@@ -3,368 +3,182 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HisaabPro - Your WhatsApp-powered business ledger</title>
+    <title>HisaabPro - Effortless Sales & Inventory Tracking via WhatsApp</title>
+    <meta name="description" content="HisaabPro empowers Pakistani kiryana store owners and street vendors to effortlessly track daily sales, manage inventory, and understand their profit/loss through simple WhatsApp messages, eliminating the need for complex apps or technical skills.">
+    <!-- Tailwind CSS CDN for quick styling -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/1200px-WhatsApp.svg.png" type="image/x-icon">
     <style>
-        /* Global Styles */
-        :root {
-            --primary-green: #25D366; /* WhatsApp-like green */
-            --dark-green: #075E54;    /* Darker WhatsApp green */
-            --light-grey: #f8f8f8;
-            --text-color: #333;
-            --heading-color: #222;
-            --white: #fff;
-            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-            --border-radius: 8px;
-            --spacing-sm: 1rem;
-            --spacing-md: 2rem;
-            --spacing-lg: 4rem;
+        /* Custom styles can be added here if needed, or override Tailwind defaults */
+        .gradient-bg {
+            background: linear-gradient(to right, #10B981, #34D399); /* Emerald shades */
         }
-
-        *, *::before, *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+        .text-whatsapp-green {
+            color: #25D366; /* Standard WhatsApp Green */
         }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--white);
-            scroll-behavior: smooth;
+        .bg-whatsapp-green {
+            background-color: #25D366;
         }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 var(--spacing-md);
-        }
-
-        h1, h2, h3, h4 {
-            color: var(--heading-color);
-            line-height: 1.2;
-            margin-bottom: var(--spacing-sm);
-        }
-
-        h1 { font-size: 2.8rem; }
-        h2 { font-size: 2.2rem; }
-        h3 { font-size: 1.6rem; }
-
-        p {
-            margin-bottom: var(--spacing-sm);
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: var(--primary-green);
-            color: var(--white);
-            padding: 0.8rem 1.8rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn:hover {
-            background-color: var(--dark-green);
-            transform: translateY(-2px);
-        }
-
-        section {
-            padding: var(--spacing-lg) 0;
-            text-align: center;
-        }
-
-        /* Navbar */
-        .navbar {
-            background-color: var(--white);
-            padding: var(--spacing-sm) 0;
-            box-shadow: var(--box-shadow);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .navbar .container {
-            display: flex;
-            justify-content: center; /* Center the brand name */
-            align-items: center;
-        }
-
-        .navbar .brand {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--dark-green);
-            text-decoration: none;
-        }
-        .navbar .brand span {
-            color: var(--primary-green);
-        }
-
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, var(--white) 0%, var(--light-grey) 100%);
-            padding: var(--spacing-lg) 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 70vh;
-        }
-
-        .hero-content {
-            max-width: 800px;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: var(--spacing-md);
-            color: var(--dark-green);
-        }
-
-        .hero p {
-            font-size: 1.4rem;
-            margin-bottom: var(--spacing-md);
-            color: var(--text-color);
-        }
-
-        /* Features Section */
-        .features {
-            background-color: var(--light-grey);
-        }
-
-        .features h2 {
-            margin-bottom: var(--spacing-lg);
-        }
-
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: var(--spacing-md);
-        }
-
-        .feature-card {
-            background-color: var(--white);
-            padding: var(--spacing-md);
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            text-align: left;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .feature-card h3 {
-            color: var(--dark-green);
-            margin-bottom: var(--spacing-sm);
-            display: flex;
-            align-items: center;
-        }
-
-        .feature-card h3::before {
-            content: '✓'; /* Placeholder for an icon */
-            display: inline-block;
-            margin-right: 10px;
-            font-size: 1.5em;
-            color: var(--primary-green);
-            font-weight: bold;
-        }
-
-        .feature-card p {
-            font-size: 0.95rem;
-            color: #555;
-        }
-
-        /* How It Works Section */
-        .how-it-works {
-            background-color: var(--white);
-        }
-
-        .how-it-works h2 {
-            margin-bottom: var(--spacing-lg);
-        }
-
-        .steps-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: var(--spacing-md);
-            margin-top: var(--spacing-lg);
-        }
-
-        .step-card {
-            background-color: var(--white);
-            padding: var(--spacing-md);
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            width: 100%;
-            max-width: 350px;
-            text-align: center;
-            position: relative;
-            padding-top: calc(var(--spacing-md) + 30px); /* Space for step number */
-            border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .step-card .step-number {
-            position: absolute;
-            top: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: var(--primary-green);
-            color: var(--white);
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            font-weight: 700;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-        }
-
-        .step-card h3 {
-            color: var(--dark-green);
-            margin-bottom: var(--spacing-sm);
-        }
-
-        .step-card p {
-            font-size: 0.95rem;
-            color: #555;
-        }
-
-        /* Footer */
-        .footer {
-            background-color: var(--dark-green);
-            color: var(--white);
-            padding: var(--spacing-md) 0;
-            font-size: 0.9rem;
-            text-align: center;
-        }
-
-        .footer .brand {
-            font-weight: 700;
-            color: var(--white);
-        }
-        .footer .brand span {
-            color: var(--primary-green);
-        }
-
-        /* Responsive Adjustments */
-        @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
-            h2 { font-size: 1.8rem; }
-            .hero p { font-size: 1.2rem; }
-            .btn { padding: 0.7rem 1.5rem; font-size: 1rem; }
-            .navbar .brand { font-size: 1.5rem; }
-
-            .feature-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .steps-grid {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .step-card {
-                max-width: 90%;
-            }
-        }
-
-        @media (max-width: 480px) {
-            h1 { font-size: 2rem; }
-            h2 { font-size: 1.6rem; }
-            .hero p { font-size: 1rem; }
-            .hero { min-height: 60vh; padding: var(--spacing-md) 0; }
-            section { padding: var(--spacing-md) 0; }
-            .container { padding: 0 var(--spacing-sm); }
+        .bg-whatsapp-green:hover {
+            background-color: #1DA84A;
         }
     </style>
 </head>
-<body>
+<body class="font-sans antialiased text-gray-800 bg-gray-50">
 
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="container">
-            <a href="#" class="brand">Hisaab<span>Pro</span></a>
-            <!-- No navigation links needed for a simple landing page per requirements -->
+    <!-- Header & Navigation -->
+    <header class="bg-white shadow-sm py-4">
+        <div class="container mx-auto flex justify-between items-center px-4 md:px-8">
+            <a href="#" class="text-2xl font-bold text-emerald-600">HisaabPro</a>
+            <nav>
+                <ul class="flex space-x-6">
+                    <li><a href="#features" class="text-gray-600 hover:text-emerald-600">Features</a></li>
+                    <li><a href="#how-it-works" class="text-gray-600 hover:text-emerald-600">How It Works</a></li>
+                    <li><a href="#cta" class="text-gray-600 hover:text-emerald-600">Get Started</a></li>
+                </ul>
+            </nav>
         </div>
-    </nav>
+    </header>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <div class="container hero-content">
-            <h1>Your WhatsApp-Powered Business Ledger</h1>
-            <p>HisaabPro empowers Pakistani kiryana store owners and street vendors to effortlessly track daily sales, manage inventory, and understand their profit/loss through simple WhatsApp messages. No complex apps, no technical skills required!</p>
-            <a href="#" class="btn">Start Free on WhatsApp</a>
+    <section id="hero" class="gradient-bg text-white py-20 px-4 md:px-8 text-center">
+        <div class="container mx-auto">
+            <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-6">
+                HisaabPro: Effortless Sales & Inventory Tracking for Pakistani Shopkeepers via WhatsApp
+            </h1>
+            <p class="text-xl md:text-2xl mb-10 max-w-3xl mx-auto">
+                Say goodbye to complex apps and confusing paperwork. HisaabPro empowers Pakistani kiryana store owners and street vendors to effortlessly track daily sales, manage inventory, and understand their profit/loss through simple WhatsApp messages, no technical skills required. Focus on your business, we'll handle the numbers.
+            </p>
+            <a href="https://wa.me/YOUR_WHATSAPP_NUMBER_HERE?text=I'm%20interested%20in%20HisaabPro!" 
+               target="_blank" 
+               class="inline-block bg-whatsapp-green text-white font-bold py-4 px-8 rounded-full text-lg shadow-lg hover:shadow-xl transition duration-300 ease-in-out">
+                Start Your Free Trial on WhatsApp!
+            </a>
+            <p class="mt-4 text-sm opacity-90">No downloads. No technical skills. Just simple WhatsApp messages.</p>
         </div>
     </section>
 
     <!-- Features Section -->
-    <section id="features" class="features">
-        <div class="container">
-            <h2>Unlock the Power of HisaabPro</h2>
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <h3>Daily Sales Logging via WhatsApp</h3>
-                    <p>Simply send messages like 'doodh 120' or 'atta 5kg 300'. HisaabPro intelligently parses product name, quantity, and price, automatically updating your sales and inventory.</p>
+    <section id="features" class="py-16 px-4 md:px-8 bg-white">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-12">Key Features Designed for You</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+
+                <!-- Feature 1: Daily Sales Logging -->
+                <div class="bg-gray-50 p-8 rounded-lg shadow-md border border-gray-100 flex flex-col items-center text-center">
+                    <div class="text-5xl text-whatsapp-green mb-4">💬</div>
+                    <h3 class="text-xl font-semibold mb-3">Daily Sales Logging</h3>
+                    <p class="text-gray-600">
+                        Record every sale with a simple WhatsApp message. Just send the item name and quantity (e.g., "Sale: Biscuits x5, Cola x2"), and HisaabPro logs it instantly. No typing, no complex forms.
+                    </p>
                 </div>
-                <div class="feature-card">
-                    <h3>Initial Inventory & Product Setup</h3>
-                    <p>Easily set up your product catalog and initial stock. Messages like 'stock doodh 50L cost 100' allow for accurate inventory tracking and profit calculations from day one.</p>
+
+                <!-- Feature 2: Inventory Management -->
+                <div class="bg-gray-50 p-8 rounded-lg shadow-md border border-gray-100 flex flex-col items-center text-center">
+                    <div class="text-5xl text-blue-500 mb-4">📦</div>
+                    <h3 class="text-xl font-semibold mb-3">Effortless Inventory Tracking</h3>
+                    <p class="text-gray-600">
+                        Keep track of your stock levels without manual counting. Get alerts for low stock items and understand what's selling best, all from your phone.
+                    </p>
                 </div>
-                <div class="feature-card">
-                    <h3>Automated End-of-Day Summary Report</h3>
-                    <p>Receive an automated WhatsApp message every evening with total sales value, calculated gross profit, and a snapshot of remaining inventory for key items. Instant business insights at your fingertips.</p>
+
+                <!-- Feature 3: End-of-Day Report -->
+                <div class="bg-gray-50 p-8 rounded-lg shadow-md border border-gray-100 flex flex-col items-center text-center">
+                    <div class="text-5xl text-purple-600 mb-4">📊</div>
+                    <h3 class="text-xl font-semibold mb-3">Instant End-of-Day Reports</h3>
+                    <p class="text-gray-600">
+                        Receive a clear, concise summary of your daily performance, total sales, profits, and sales trends directly on WhatsApp every evening. Make informed decisions effortlessly.
+                    </p>
                 </div>
-                <div class="feature-card">
-                    <h3>Smart Error Handling & Guided Help</h3>
-                    <p>If you send an unrecognized message, the system provides helpful, culturally adapted error messages (e.g., Roman Urdu) and guidance. Type 'HELP' or 'MADAD' anytime for assistance.</p>
+
+                <!-- Feature 4: Error Handling -->
+                <div class="bg-gray-50 p-8 rounded-lg shadow-md border border-gray-100 flex flex-col items-center text-center">
+                    <div class="text-5xl text-red-500 mb-4">↩️</div>
+                    <h3 class="text-xl font-semibold mb-3">Simple Error Handling</h3>
+                    <p class="text-gray-600">
+                        Made a mistake in an entry? No worries! Easily correct previous entries or undo actions with simple WhatsApp commands, ensuring your records are always accurate and reliable.
+                    </p>
                 </div>
-                <div class="feature-card">
-                    <h3>Basic Credit Sales Tracking</h3>
-                    <p>Log sales made on credit by specifying the customer's name, e.g., 'credit Aslam 250'. HisaabPro tracks outstanding 'udhaar' amounts, accessible upon request for better management.</p>
+
+                <!-- Feature 5: Credit Sales (Udhaar) -->
+                <div class="bg-gray-50 p-8 rounded-lg shadow-md border border-gray-100 flex flex-col items-center text-center">
+                    <div class="text-5xl text-yellow-500 mb-4">💰</div>
+                    <h3 class="text-xl font-semibold mb-3">Credit Sales (Udhaar) Tracking</h3>
+                    <p class="text-gray-600">
+                        Effortlessly manage your credit sales (udhaar) with customers. Track who owes you what, when it's due, and even send polite reminders, all through convenient WhatsApp messages.
+                    </p>
                 </div>
+
+                <!-- Feature 6: No Complex Apps -->
+                <div class="bg-gray-50 p-8 rounded-lg shadow-md border border-gray-100 flex flex-col items-center text-center">
+                    <div class="text-5xl text-indigo-500 mb-4">📱</div>
+                    <h3 class="text-xl font-semibold mb-3">No Complex Apps or Skills Needed</h3>
+                    <p class="text-gray-600">
+                        HisaabPro is designed for simplicity. If you can send a WhatsApp message, you can manage your business finances. No technical expertise or smartphone apps required.
+                    </p>
+                </div>
+
             </div>
         </div>
     </section>
 
     <!-- How It Works Section -->
-    <section id="how-it-works" class="how-it-works">
-        <div class="container">
-            <h2>How HisaabPro Works in 3 Simple Steps</h2>
-            <div class="steps-grid">
-                <div class="step-card">
-                    <div class="step-number">1</div>
-                    <h3>Setup Your Products</h3>
-                    <p>Tell HisaabPro about your items and initial stock using simple WhatsApp messages. E.g., 'stock doodh 50L cost 100'.</p>
+    <section id="how-it-works" class="py-16 px-4 md:px-8 bg-gray-100">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-12">How HisaabPro Works in 3 Simple Steps</h2>
+            <div class="grid md:grid-cols-3 gap-10">
+                <!-- Step 1 -->
+                <div class="p-6 bg-white rounded-lg shadow-lg border border-gray-200">
+                    <div class="text-5xl font-bold text-emerald-500 mb-4">1</div>
+                    <h3 class="text-xl font-semibold mb-3">Save Our Number</h3>
+                    <p class="text-gray-600">
+                        Save HisaabPro's dedicated WhatsApp number to your contacts, just like you would a friend's.
+                    </p>
                 </div>
-                <div class="step-card">
-                    <div class="step-number">2</div>
-                    <h3>Log Sales Instantly</h3>
-                    <p>Whenever you make a sale, just send a WhatsApp message. E.g., 'doodh 120'. HisaabPro handles the rest.</p>
+                <!-- Step 2 -->
+                <div class="p-6 bg-white rounded-lg shadow-lg border border-gray-200">
+                    <div class="text-5xl font-bold text-emerald-500 mb-4">2</div>
+                    <h3 class="text-xl font-semibold mb-3">Send Simple Messages</h3>
+                    <p class="text-gray-600">
+                        Log sales, manage inventory, or track credit by sending simple, intuitive WhatsApp messages. For example: "Sale: Chai x10, Biscuit packet x3".
+                    </p>
                 </div>
-                <div class="step-card">
-                    <div class="step-number">3</div>
-                    <h3>Get Daily Insights</h3>
-                    <p>Receive an automated summary every evening with your sales, profit, and inventory. All via WhatsApp!</p>
+                <!-- Step 3 -->
+                <div class="p-6 bg-white rounded-lg shadow-lg border border-gray-200">
+                    <div class="text-5xl font-bold text-emerald-500 mb-4">3</div>
+                    <h3 class="text-xl font-semibold mb-3">Get Instant Reports</h3>
+                    <p class="text-gray-600">
+                        Receive instant confirmations for your entries and a comprehensive daily business report delivered directly to your WhatsApp.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Call to Action Section -->
+    <section id="cta" class="py-20 px-4 md:px-8 text-center bg-emerald-600 text-white">
+        <div class="container mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Simplify Your Business?</h2>
+            <p class="text-xl mb-10 max-w-2xl mx-auto">
+                Join hundreds of Pakistani shopkeepers who are already managing their business effortlessly with HisaabPro. Get started today and experience the ease of WhatsApp-based business management.
+            </p>
+            <a href="https://wa.me/YOUR_WHATSAPP_NUMBER_HERE?text=I'm%20interested%20in%20HisaabPro!" 
+               target="_blank" 
+               class="inline-block bg-white text-emerald-700 font-bold py-4 px-10 rounded-full text-xl shadow-lg hover:shadow-xl hover:text-emerald-800 transition duration-300 ease-in-out">
+                Start Managing Your Business on WhatsApp!
+            </a>
+        </div>
+    </section>
+
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2023 <span class="brand">Hisaab<span>Pro</span></span>. All rights reserved.</p>
+    <footer class="bg-gray-800 text-gray-300 py-8 px-4 md:px-8">
+        <div class="container mx-auto text-center md:flex md:justify-between md:items-center">
+            <p>&copy; 2023 HisaabPro. All rights reserved.</p>
+            <ul class="flex justify-center space-x-6 mt-4 md:mt-0">
+                <li><a href="#features" class="hover:text-white">Features</a></li>
+                <li><a href="#how-it-works" class="hover:text-white">How It Works</a></li>
+                <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
+            </ul>
         </div>
     </footer>
 
